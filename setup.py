@@ -48,8 +48,7 @@ setup(
         "pytz",
         "tqdm",
         # Conditional dependencies for ONNXRuntime backends
-        "onnxruntime >=1.10.1;platform_system=='Linux' and extra not in 'llm-oga-cuda'",
-        "onnxruntime-directml >=1.19.0;platform_system=='Windows' and extra != 'llm-oga-cuda'",
+        "onnxruntime >=1.10.1;extra == 'llm-oga-cpu'",
         "onnxruntime-gpu >=1.19.1;extra == 'llm-oga-cuda'",
     ],
     extras_require={
@@ -74,6 +73,13 @@ setup(
         ],
         "llm-oga-cuda": [
             "onnxruntime-genai-cuda==0.6.0rc1",
+            "torch>=2.0.0,<2.4",
+            "transformers>4.45.0",
+            "turnkeyml[llm]",
+        ],
+
+        "llm-oga-cpu": [
+            "onnxruntime-genai==0.6.0rc1",
             "torch>=2.0.0,<2.4",
             "transformers>4.45.0",
             "turnkeyml[llm]",
